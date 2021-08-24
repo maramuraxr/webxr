@@ -10,8 +10,17 @@ class VRButton{
         this.renderer = renderer;
         
         if ( 'xr' in navigator ) {
+            const button = document.createElement('button');
+            button.style.display = 'none';
+            button.style.height = '40px';
+            document.body.appendChild( button );
             
+            navigator.xr.isSessionSupported('immersive-vrx').then ((supported) => {
+                supported ? this.showEnterVR( button ) : this.showWebXRNotFound( button );
+
+            })
 		} else {
+
             
 		}
 
@@ -33,7 +42,18 @@ class VRButton{
 
     }
 
-    showWebXRNotFound( button ) { 
+    showWebXRNotFound( button ) {
+        this.stylizeElement( button, false );
+        this.disableButton( button );
+
+        button.style.display = '';
+        button.style.width = '100';
+        button.style.right = '0px';
+        button.style.bottom = '0px';
+        button.style.border = '';
+        button.style.opacity = '1';
+        button.style.fontSize = '13px';
+        button.textContent = 'VR NOT SUPPORTED';
     
     }
 
