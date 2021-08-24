@@ -27,6 +27,13 @@ class VRButton{
     }
 
 	showEnterVR( button ) {
+        this.stylizeElement( button, true, 30, true );
+
+        button.style.display = '';
+        button.style.right = '20px';
+        button.style.width = '80px';
+        button.style.cursor = 'pointer';
+        button.innerHTML = '<i class="fas fa-vr-cardboard">';
     
     }
 
